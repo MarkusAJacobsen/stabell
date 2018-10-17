@@ -9,6 +9,6 @@
     "default_popup": "dropdown.html"
   },
   "permissions": [
-    "tabs"
+    "storage"
   ]
 }

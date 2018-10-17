@@ -1,0 +1,20 @@
+.main {
+    width: 300px;
+}
+
+.vertical-menu a {
+    background-color: white;
+    color: #000;
+    padding: 12px;
+    display: block;
+    text-decoration: none;
+}
+
+.vertical-menu a.active {
+    background-color: #74CEDD; /*Go?*/
+    color: white;
+}
+
+.vertical-menu a:hover {
+    background-color: lightgrey;
+}

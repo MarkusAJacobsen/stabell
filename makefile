@@ -1,5 +1,7 @@
 all: ensure_format lint transpile
 
+no_dev_check: transpile
+
 ensure_format:
 	gofmt -s -w .
 
