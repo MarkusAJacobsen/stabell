@@ -7,6 +7,7 @@ import (
 	"github.com/gopherjs/gopherjs/js"
 	"github.com/pkg/errors"
 	"honnef.co/go/js/dom"
+	"strconv"
 	"time"
 )
 
@@ -17,6 +18,7 @@ const (
 
 var (
 	cStorage = js.Global.Get("localStorage")
+	storage  = Storage{}
 )
 
 func main() {
@@ -25,11 +27,14 @@ func main() {
 		dom.GetWindow().Document().GetElementByID("status"),
 	}
 
+	storage, _ = getFromChromeStorage()
+
 	el1 := dom.GetWindow().Document().GetElementByID("vm-1")
 	el1.AddEventListener("click", true, ctx.SaveWindowSession)
 
 	el2 := dom.GetWindow().Document().GetElementByID("vm-2")
 	el2.AddEventListener("click", true, GetSavedSessionsHandler)
+
 }
 
 type Ctx struct {
@@ -129,12 +134,21 @@ func mapToStringArray(val map[int]string) (con []string) {
 }
 
 func GetSavedSessionsHandler(event dom.Event) {
-	res, err := getFromChromeStorage()
-	if err != nil {
-		fmt.Println(err.Error())
+	d := dom.GetWindow().Document()
+	sS := d.GetElementByID("storedSessions")
+	for i := range storage {
+		el := d.CreateElement("a").(*dom.HTMLAnchorElement)
+		el.SetInnerHTML(strconv.FormatInt(storage[i].Ts, 10))
+		el.Set("href", "#")
+		el.SetID(strconv.Itoa(i))
+		el.AddEventListener("click", true, OpenNewSession)
+
+		sS.AppendChild(el)
 	}
 
-	fmt.Println(res)
+	om := d.GetElementByID("options")
+	toggleMenu(om)
+	toggleMenu(sS)
 }
 
 func isSame(storage Storage, session Session) (same bool) {
@@ -146,4 +160,19 @@ func isSame(storage Storage, session Session) (same bool) {
 		}
 	}*/
 	return false
+}
+
+func toggleMenu(el dom.Element) {
+	if el.HasAttribute("hidden") {
+		fmt.Print(el)
+		el.RemoveAttribute("hidden")
+	} else {
+		el.SetAttribute("hidden", "")
+	}
+}
+
+func OpenNewSession(event dom.Event) {
+	fmt.Print("Registered")
+	id := event.Target().GetAttribute("id")
+	fmt.Print(id)
 }

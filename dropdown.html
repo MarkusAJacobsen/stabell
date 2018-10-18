@@ -2,19 +2,20 @@
 <head>
     <link rel="stylesheet" href="style.css" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
 </head>
 <body>
 <div class="main">
     <h1 id="title">Stabell</h1>
-    <div class="vertical-menu">
-        <a href="#" id="vm-1">Save current window session</a>
-        <a href="#" id="vm-2">Load window session</a>
-        <a href="#" id="vm-3">Export session</a>
-        <a href="#" id="vm-4">Import session</a>
-    </div>
-    <p id="status"></p>
 </div>
-
+<div id="options" class="vertical-menu">
+    <a href="#" id="vm-1">Save current window session</a>
+    <a href="#" id="vm-2">Load window session</a>
+    <a href="#" id="vm-3">Export session</a>
+    <a href="#" id="vm-4">Import session</a>
+</div>
+<div id="storedSessions" class="vertical-menu" hidden></div>
+<p id="status"></p>
 <script src="app.js"></script>
 </body>
 </html>
