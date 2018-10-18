@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "properties": {
+    "Storage": {
+      "type": "object",
+      "properties": {
+        "Session": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ts": {"type": "number"},
+              "url": {"type": "array", "items": {"type":"string"}}
+            }
+          }
+        }
+      }
+    }
+  }
+}

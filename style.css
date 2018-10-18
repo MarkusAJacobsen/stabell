@@ -10,11 +10,7 @@
     text-decoration: none;
 }
 
-.vertical-menu a.active {
+.vertical-menu a:hover {
     background-color: #74CEDD; /*Go?*/
     color: white;
-}
-
-.vertical-menu a:hover {
-    background-color: lightgrey;
 }

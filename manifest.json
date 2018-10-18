@@ -9,6 +9,9 @@
     "default_popup": "dropdown.html"
   },
   "permissions": [
-    "storage"
-  ]
+    "storage", "tabs"
+  ],
+  "storage": {
+    "managed_schema": "storage-schema.json"
+  }
 }
